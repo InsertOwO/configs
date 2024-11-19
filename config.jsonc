@@ -1,0 +1,90 @@
+{
+    "modules-left": ["image", "sway/window", "privacy", "sway/mode"],
+    "modules-center": ["sway/workspaces"],
+    "modules-right": ["custom/updates", "memory", "cpu", "network", "battery", "wireplumber", "backlight/slider", "clock"], 
+
+    "image": {
+	"on-click": "exec wlogout",
+	"path": "/home/insert/.config/logos/arch.png",
+	"size": 21
+    },
+    "sway/window": {
+        "format": "{app_id}",
+        "max-length": 50,
+        "rewrite": {
+           "zen-alpha": " 🌎 Zen Browser ",
+           "foot": "  Terminal ",
+	   "geogebra": "  Geogebra "
+    }
+},
+    "privacy": {
+        "icon-spacing": 4,
+        "icon-size": 18,
+        "transition-duration": 250,
+        "modules": [
+                {
+                        "type": "screenshare",
+                        "tooltip": true,
+                        "tooltip-icon-size": 24
+                },
+                {
+                        "type": "audio-in",
+                        "tooltip": true,
+                        "tooltip-icon-size": 24
+                }
+        ]
+},
+    "sway/mode": {
+        "format": "  "
+    },
+    "network": {
+        "format-wifi": "({signalStrength}) ",
+        "format-ethernet": " ",
+        "format-disconnected": " ", 
+        "on-click": "foot -e 'nmtui'"
+    },
+    "custom/updates": {
+        "format": " {} {icon}",
+	"format-alt": " {icon}",
+        "return-type": "json",
+        "format-icons": {
+            "has-updates": "┃",
+            "updated": "┃"
+        },
+        "exec-if": "which waybar-module-pacman-updates",
+        "exec": "waybar-module-pacman-updates --interval-seconds 5 --network-interval-seconds 300"
+},
+    "memory": {
+        "interval": 30,
+        "format": "{} "
+    },
+    "cpu": {
+        "format": "{} ┃"
+    },
+    "battery": {
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "bluetooth": {
+	"format": " {status}",
+	"format-disabled": "",
+	"format-connected": " {num_connections} connected",
+	"tooltip-format": "{controller_alias}\t{controller_address}",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+    },
+    "wireplumber": {
+        "format": "{volume} {icon} ",
+        "format-muted":"",
+        "format-icons":["", "", ""]
+    },
+    "clock": {
+	"format": "{:%H:%M} ",
+	"format-alt": "{:%d/%m/%y} "
+    }
+}
